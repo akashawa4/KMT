@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KMT Tracker - Kolhapur Municipal Transportation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preload" href="./assets/Team chaos.png" as="image">
+
+    <!-- Add EmailJS library -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // Replace with your actual EmailJS public key (not service ID)
+            emailjs.init("0e2V_n73b1Y1kNgxo");
+            console.log("EmailJS initialized");
+        })();
+    </script>
+
+    <script src="translation.js"></script>
+
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo" data-i18n="hero_title">KMT Tracker</div>
+                <ul class="nav-links">
+                    <li><a href="#problem-section" data-i18n="nav_problem" aria-label="Problem">Problem</a></li>
+                    <li><a href="#solutions-section" data-i18n="nav_solutions" aria-label="Solutions">Solutions</a></li>
+                    <li><a href="#features-section" data-i18n="nav_features" aria-label="Features">Features</a></li>
+                    <li><a href="#goods-section" data-i18n="nav_goods" aria-label="Goods Transport">Goods Transport</a></li>
+                    <li><a href="#tracking-section" data-i18n="nav_tracking" aria-label="Live Tracking">Live Tracking</a></li>
+                    <li><a href="#schedule-section" data-i18n="nav_schedule" aria-label="Schedule">Schedule</a></li>
+                    <li><a href="#contact-section" data-i18n="nav_contact" aria-label="Contact">Contact</a></li>
+                </ul>
+
+                <div class="language-selector">
+                    <button class="language-btn active" data-lang="en">EN</button>
+                    <button class="language-btn" data-lang="hi">HI</button>
+                    <button class="language-btn" data-lang="mr">MR</button>
+                </div>
+
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title" data-i18n="hero_title">KMT Tracker</h1>
+                <p class="hero-subtitle" data-i18n="hero_subtitle">Revolutionizing Kolhapur's Public Transportation System</p>
+                <a href="#search-section" class="btn" data-i18n="hero_cta">Plan Your Journey</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section id="search-section" class="search-section">
+        <div class="container">
+            <div class="search-container">
+                <h2 class="section-title" data-i18n="search_title">Find Your Route</h2>
+                <div class="search-box">
+                    <div class="search-form">
+                        <div class="search-input-group">
+                            <div class="input-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <input type="text" id="from-location" data-i18n-placeholder="search_from" placeholder="From" autocomplete="off">
+                            <div class="suggestions-list" id="from-suggestions"></div>
+                        </div>
+
+                        <div class="direction-indicator">
+                            <i class="fas fa-exchange-alt fa-rotate-90"></i>
+                        </div>
+
+                        <div class="search-input-group">
+                            <div class="input-icon">
+                                <i class="fas fa-map-marker"></i>
+                            </div>
+                            <input type="text" id="to-location" data-i18n-placeholder="search_to" placeholder="To" autocomplete="off">
+                            <div class="suggestions-list" id="to-suggestions"></div>
+                        </div>
+
+                        <button type="submit" class="btn search-btn" data-i18n="search_button">
+                            <i class="fas fa-search"></i> Find Routes
+                        </button>
+                    </div>
+                    <div id="search-results"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Problem Section -->
+    <section id="problem-section" class="problem-section section">
+        <div class="container">
+            <h2 class="section-title" data-i18n="problem_title">Problem Statement</h2>
+            <p class="section-description" data-i18n="problem_desc">Intercity bus transportation service by Kolhapur Municipal Transportation (KMT) is meant to be seamless and reliable, yet commuters face daily frustration due to inefficiencies in the system:</p>
+
+            <div class="problem-list">
+                <div class="problem-item">
+                    <div class="problem-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="problem-title" data-i18n="problem_unpredictable_title">Unpredictable Schedules</h3>
+                    <p data-i18n="problem_unpredictable_desc">Buses often run behind schedule with no real-time updates available to commuters, leading to long wait times and missed connections.</p>
+                </div>
+
+                <div class="problem-item">
+                    <div class="problem-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3 class="problem-title" data-i18n="problem_confusing_title">Confusing Routes</h3>
+                    <p data-i18n="problem_confusing_desc">Lack of clear route information and maps makes it difficult for new users and tourists to navigate the system effectively.</p>
+                </div>
+
+                <div class="problem-item">
+                    <div class="problem-icon">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <h3 class="problem-title" data-i18n="problem_manual_title">Manual Ticketing</h3>
+                    <p data-i18n="problem_manual_desc">Cash-only, paper-based ticketing system is inefficient, prone to errors, and creates unnecessary delays during boarding.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions-section" class="solutions-section section">
+        <div class="container">
+            <h2 class="section-title" data-i18n="solutions_title">Our Solutions</h2>
+
+            <div class="solutions-grid">
+                <div class="solution-card">
+                    <div class="solution-img">
+                        <img src="https://images.unsplash.com/photo-1604357209793-fca5dca89f97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFwfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="Interactive Route System">
+                    </div>
+                    <div class="solution-content">
+                        <h3 class="solution-title" data-i18n="solution1_title">Interactive Route System</h3>
+                        <p data-i18n="solution1_desc">Real-time digital maps and stop information integrated into a mobile application.</p>
+                    </div>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-img">
+                        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dGlja2V0fGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="Online Booking">
+                    </div>
+                    <div class="solution-content">
+                        <h3 class="solution-title" data-i18n="solution2_title">Online Booking</h3>
+                        <p data-i18n="solution2_desc">Secure, user-friendly online ticket booking system via mobile app and website.</p>
+                    </div>
+                </div>
+
+                <div class="solution-card">
+                    <div class="solution-img">
+                        <img src="https://ggwash.org/images/posts/201110-rideon.png" alt="Real-Time Tracking">
+                    </div>
+                    <div class="solution-content">
+                        <h3 class="solution-title" data-i18n="solution3_title">Real-Time Tracking</h3>
+                        <p data-i18n="solution3_desc">Live GPS tracking and instant service updates for all buses.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features-section" class="features-section section">
+        <div class="container">
+            <h2 class="section-title" data-i18n="features_title">Key Features</h2>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Mobile App</h3>
+                    <p>User-friendly mobile application for Android and iOS with offline capabilities.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3 class="feature-title">Notifications</h3>
+                    <p>Real-time alerts for delays, route changes, and arrival times.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <h3 class="feature-title">QR Tickets</h3>
+                    <p>Digital tickets with QR codes for quick and contactless boarding.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <h3 class="feature-title">Digital Payments</h3>
+                    <p>Multiple payment options including UPI, cards, and digital wallets.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3 class="feature-title">Multilingual</h3>
+                    <p>Support for English, Hindi, and Marathi languages.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h3 class="feature-title">Journey Planner</h3>
+                    <p>Plan multi-stop journeys with optimal route suggestions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Goods Transport Section -->
+    <section id="goods-section" class="goods-section section">
+        <div class="container">
+            <h2 class="section-title" data-i18n="goods_title">Goods Transportation</h2>
+
+            <div class="goods-container">
+                <div class="goods-content">
+                    <p data-i18n="goods_desc">Expanding KMT services to include goods transportation, offering local businesses a reliable and cost-effective delivery solution.</p>
+                    <ul class="goods-features">
+                        <li><i class="fas fa-check"></i> Same-day delivery within city limits</li>
+                        <li><i class="fas fa-check"></i> Real-time tracking of shipments</li>
+                        <li><i class="fas fa-check"></i> Competitive pricing for local businesses</li>
+                        <li><i class="fas fa-check"></i> Scheduled pickup and delivery options</li>
+                        <li><i class="fas fa-check"></i> Integration with e-commerce platforms</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline" onclick="showGoodsTransportInfo(); return false;">Learn More</a>
+                </div>
+                <div class="goods-image">
+                    <img src="https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGFja2FnZSUyMGRlbGl2ZXJ5fGVufDB8fDB8fHww&auto=format=crop&w=500&q=60" alt="Goods Transportation">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section id="schedule-section" class="schedule-section section">
+        <div class="container">
+            <h2 class="section-title">Bus Schedule</h2>
+
+            <div class="schedule-tabs">
+                <button class="schedule-tab active" data-tab="weekday">Weekday</button>
+                <button class="schedule-tab" data-tab="weekend">Weekend</button>
+            </div>
+
+            <div class="schedule-content">
+                <div class="schedule-table-wrapper">
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th>Route No.</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Departure</th>
+                                <th>Arrival</th>
+                                <th>Frequency</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Weekday Schedule -->
+                            <tr class="weekday">
+                                <td>KMT-01</td>
+                                <td>Central Bus Stand</td>
+                                <td>Rankala Lake</td>
+                                <td>06:00 AM</td>
+                                <td>06:45 AM</td>
+                                <td>Every 30 mins</td>
+                                <td><span class="status-badge on-time">On Time</span></td>
+                            </tr>
+                            <tr class="weekday">
+                                <td>KMT-02</td>
+                                <td>Railway Station</td>
+                                <td>New Palace</td>
+                                <td>06:15 AM</td>
+                                <td>07:00 AM</td>
+                                <td>Every 45 mins</td>
+                                <td><span class="status-badge delayed">Delayed</span></td>
+                            </tr>
+                            <tr class="weekday">
+                                <td>KMT-03</td>
+                                <td>Central Bus Stand</td>
+                                <td>Tarabai Park</td>
+                                <td>06:30 AM</td>
+                                <td>07:15 AM</td>
+                                <td>Every 30 mins</td>
+                                <td><span class="status-badge on-time">On Time</span></td>
+                            </tr>
+                            <tr class="weekday">
+                                <td>KMT-04</td>
+                                <td>Rajarampuri</td>
+                                <td>Railway Station</td>
+                                <td>07:00 AM</td>
+                                <td>07:45 AM</td>
+                                <td>Every 45 mins</td>
+                                <td><span class="status-badge on-time">On Time</span></td>
+                            </tr>
+                            <tr class="weekday">
+                                <td>KMT-05</td>
+                                <td>New Palace</td>
+                                <td>Rankala Lake</td>
+                                <td>07:15 AM</td>
+                                <td>08:00 AM</td>
+                                <td>Every 60 mins</td>
+                                <td><span class="status-badge delayed">Delayed</span></td>
+                            </tr>
+
+                            <!-- Weekend Schedule -->
+                            <tr class="weekend" style="display: none;">
+                                <td>KMT-01</td>
+                                <td>Central Bus Stand</td>
+                                <td>Rankala Lake</td>
+                                <td>07:00 AM</td>
+                                <td>07:45 AM</td>
+                                <td>Every 45 mins</td>
+                                <td><span class="status-badge on-time">On Time</span></td>
+                            </tr>
+                            <tr class="weekend" style="display: none;">
+                                <td>KMT-02</td>
+                                <td>Railway Station</td>
+                                <td>New Palace</td>
+                                <td>07:15 AM</td>
+                                <td>08:00 AM</td>
+                                <td>Every 60 mins</td>
+                                <td><span class="status-badge on-time">On Time</span></td>
+                            </tr>
+                            <tr class="weekend" style="display: none;">
+                                <td>KMT-03</td>
+                                <td>Central Bus Stand</td>
+                                <td>Tarabai Park</td>
+                                <td>07:30 AM</td>
+                                <td>08:15 AM</td>
+                                <td>Every 45 mins</td>
+                                <td><span class="status-badge delayed">Delayed</span></td>
+                            </tr>
+                            <tr class="weekend" style="display: none;">
+                                <td>KMT-04</td>
+                                <td>Rajarampuri</td>
+                                <td>Railway Station</td>
+                                <td>08:00 AM</td>
+                                <td>08:45 AM</td>
+                                <td>Every 60 mins</td>
+                                <td><span class="status-badge on-time">On Time</span></td>
+                            </tr>
+                            <tr class="weekend" style="display: none;">
+                                <td>KMT-05</td>
+                                <td>New Palace</td>
+                                <td>Rankala Lake</td>
+                                <td>08:15 AM</td>
+                                <td>09:00 AM</td>
+                                <td>Every 75 mins</td>
+                                <td><span class="status-badge on-time">On Time</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="schedule-pagination">
+                    <button class="pagination-btn" id="prev-page" disabled><i class="fas fa-chevron-left"></i></button>
+                    <span class="page-info">Page 1 of 1</span>
+                    <button class="pagination-btn" id="next-page" disabled><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Add this section before the Sustainable Mobility Section -->
+    <section id="tracking-section" class="tracking-section section">
+        <div class="container">
+            <h2 class="section-title" data-i18n="tracking_title">Live Bus Tracking</h2>
+            <p class="section-description" data-i18n="tracking_description">Track KMT buses in real-time across Kolhapur</p>
+
+            <div class="tracking-container">
+                <div class="map-container">
+                    <div class="bus-overlay"></div>
+                    <!-- Map will be displayed here -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15288.022571746522!2d74.23328302339416!3d16.704962241347364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc1000cdec07a29%3A0xece8ea642952e42f!2sKolhapur%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1699123456789!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+
+                <div class="bus-tracking-info">
+                    <h3>Active Buses</h3>
+                    <div class="bus-list">
+                        <!-- Bus cards will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sustainable Mobility Section -->
+    <section id="sustainable-mobility" class="sustainable-mobility">
+        <div class="sustainability-container">
+            <div class="sustainability-header">
+                <h2 class="sustainability-title">Sustainable Mobility </h2>
+                <p class="sustainability-subtitle">Driving innovation in sustainable mobility to address transportation challenges of the future</p>
+            </div>
+
+
+            <div class="eco-stats">
+                <div class="eco-stat">
+                    <div class="eco-stat-number">30%</div>
+                    <h4 class="eco-stat-title">Carbon Reduction</h4>
+                    <p class="eco-stat-desc">Potential reduction in carbon emissions with optimized public transport</p>
+                </div>
+                <div class="eco-stat">
+                    <div class="eco-stat-number">45%</div>
+                    <h4 class="eco-stat-title">Traffic Decrease</h4>
+                    <p class="eco-stat-desc">Reduction in traffic congestion with efficient transit solutions</p>
+                </div>
+                <div class="eco-stat">
+                    <div class="eco-stat-number">60%</div>
+                    <h4 class="eco-stat-title">Fuel Savings</h4>
+                    <p class="eco-stat-desc">Potential fuel savings with route optimization technology</p>
+                </div>
+            </div>
+
+            <div class="sustainability-grid">
+                <!-- Problems -->
+                <div class="sustainability-card">
+                    <div class="card-header">
+                        <h3>Mobility Challenges</h3>
+                        <p>Current transportation problems we're addressing</p>
+                        <i class="fas fa-exclamation-triangle card-icon"></i>
+                    </div>
+                    <div class="card-body">
+                        <ul class="sustainability-list">
+                            <li class="problem">Inefficient public transport scheduling leading to overcrowding</li>
+                            <li class="problem">Limited real-time tracking capabilities for buses and transit</li>
+                            <li class="problem">High carbon emissions from outdated transportation systems</li>
+                            <li class="problem">Lack of integrated mobility solutions for seamless travel</li>
+                            <li class="problem">Inadequate accessibility for elderly and disabled passengers</li>
+                            <li class="problem">Unpredictable waiting times causing passenger frustration</li>
+                            <li class="problem">Traffic congestion during peak hours increasing travel time</li>
+                            <li class="problem">Limited last-mile connectivity options in suburban areas</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Solutions -->
+                <div class="sustainability-card">
+                    <div class="card-header solution">
+                        <h3>Innovative Solutions</h3>
+                        <p>How our technology addresses these challenges</p>
+                        <i class="fas fa-lightbulb card-icon"></i>
+                    </div>
+                    <div class="card-body">
+                        <ul class="sustainability-list">
+                            <li>Real-time bus tracking system with accurate arrival predictions</li>
+                            <li>AI-powered route optimization to reduce fuel consumption</li>
+                            <li>Dynamic scheduling based on passenger demand patterns</li>
+                            <li>Integrated payment systems for seamless multi-modal travel</li>
+                            <li>Accessibility features for elderly and disabled passengers</li>
+                            <li>Predictive maintenance to prevent breakdowns and delays</li>
+                            <li>Eco-driving recommendations for bus operators</li>
+                            <li>Carbon footprint tracking and reduction initiatives</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Future Vision -->
+                <div class="sustainability-card">
+                    <div class="card-header">
+                        <h3>Future Roadmap</h3>
+                        <p>Our vision for sustainable urban mobility</p>
+                        <i class="fas fa-road card-icon"></i>
+                    </div>
+                    <div class="card-body">
+                        <ul class="sustainability-list">
+                            <li>Integration with electric and hydrogen-powered bus fleets</li>
+                            <li>Smart city infrastructure connectivity for traffic management</li>
+                            <li>Autonomous vehicle integration for first/last mile solutions</li>
+                            <li>Mobility-as-a-Service (MaaS) platform development</li>
+                            <li>Community-based ride-sharing and carpooling initiatives</li>
+                            <li>Green corridor development for sustainable transit routes</li>
+                            <li>Renewable energy charging stations for electric buses</li>
+                            <li>Data-driven urban planning for transit-oriented development</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="innovation-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2025</span>
+                        <h3>Real-time Tracking Launch</h3>
+                        <p>Deployment of GPS-based tracking system for entire bus fleet</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2025</span>
+                        <h3>AI Route Optimization</h3>
+                        <p>Implementation of machine learning algorithms for dynamic routing</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2025</span>
+                        <h3>Electric Fleet Transition</h3>
+                        <p>Beginning the transition to fully electric bus fleet</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-date">2025</span>
+                        <h3>Integrated Mobility Platform</h3>
+                        <p>Launch of comprehensive MaaS platform for seamless multi-modal travel</p>
+                    </div>
+                </div>
+            </div>
+            <div class="sustainability-cta">
+                <a href="#contact-section" class="sustainability-btn">Join Our Sustainable Mobility Initiative</a>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <!-- Contact Section -->
+    <section id="contact-section" class="contact-section">
+        <div class="contact-container">
+            <div class="contact-header">
+                <h2 class="contact-title">Contact Us</h2>
+                <p class="contact-subtitle">Have questions about KMT Tracker? We're here to help!</p>
+            </div>
+
+            <div class="contact-form-container">
+                <ul class="contact-info-list">
+                    <li>Program Name</li>
+                    <li>Query/Message</li>
+                </ul>
+
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Email Address" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="tel" id="contact-number" name="contact-number" placeholder="Contact Number">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <select id="program-name" name="program-name" required>
+                            <option value="" disabled selected>Program Name</option>
+                            <option value="passenger">Passenger Services</option>
+                            <option value="goods">Goods Transportation</option>
+                            <option value="tracking">Bus Tracking</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <textarea id="query-message" name="query-message" placeholder="Query/Message" required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Record Your Interest</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add this before the closing body tag if it doesn't exist -->
+    <!-- Modal for features and goods transport -->
+    <div id="feature-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modal-content-container">
+                <!-- Dynamic content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+
+    <script src="js/map.js"></script>
+    <!-- Before closing body tag -->
+    <script src="js/bus-tracking.js"></script>
+    <!-- Before closing body tag -->
+    <script src="js/search-suggestions.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
+
+<!-- Add this after the last section and before the modal -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>KMT Tracker</h3>
+                <p>Revolutionizing Kolhapur's Public Transportation System</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#problem-section">Problem</a></li>
+                    <li><a href="#solutions-section">Solutions</a></li>
+                    <li><a href="#features-section">Features</a></li>
+                    <li><a href="#goods-section">Goods Transport</a></li>
+                    <li><a href="#tracking-section">Live Tracking</a></li>
+                    <li><a href="#schedule-section">Schedule</a></li>
+                    <li><a href="#contact-section">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:kmttracker96@gmail.com">kmttracker96@gmail.com</a></p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="team-info">Team Name: THE CHAOS | Email: <a href="mailto:kmttracker96@gmail.com">kmttracker96@gmail.com</a></p>
+            <p class="copyright">&copy; 2025 KMT Tracker. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Modal for features and goods transport -->

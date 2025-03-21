@@ -1,0 +1,38 @@
+/* Base styles for all devices */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Media queries for different screen sizes */
+/* Mobile devices */
+@media (max-width: 767px) {
+  .container {
+    padding: 0 10px;
+  }
+  /* Add mobile-specific styles here */
+}
+
+/* Tablets */
+@media (min-width: 768px) and (max-width: 991px) {
+  /* Add tablet-specific styles here */
+}
+
+/* Desktops */
+@media (min-width: 992px) {
+  /* Add desktop-specific styles here */
+}

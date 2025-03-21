@@ -1,0 +1,22 @@
+const busStops = [
+    "Central Bus Stand",
+    "Railway Station",
+    "Rankala Lake",
+    "New Palace",
+    "Rajarampuri",
+    "Tarabai Park",
+    "Market Yard",
+    "Shahupuri",
+    "Shivaji University",
+    "Jaysingpur",
+    "Ichalkaranji",
+    "Mahadwar Road",
+    "Bindu Chowk",
+    "Shivaji Peth",
+    "Laxmipuri",
+    "Sambhaji Nagar",
+    "Kasba Bawada",
+    "Line Bazaar",
+    "Udyam Nagar",
+    "Kawala Naka"
+];
